@@ -17,8 +17,6 @@ This project shows how to use **Parameter Efficient Fine-Tuning (PEFT)** with **
 - 🛠️ Framework: Hugging Face Transformers
 - 🚀 Runtime: Google Colab 
 
----
-
 
 ---
 
