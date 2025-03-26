@@ -38,6 +38,9 @@ With just **1,000 training samples** the model achieves **strong ROUGE scores**,
 - **Test used**: First 300 samples
 - **Task**: Summarize informal dialogues in English
 
+
+
+
 ---
 
 ### 📦 Training Details
@@ -55,7 +58,21 @@ With just **1,000 training samples** the model achieves **strong ROUGE scores**,
 
 ---
 
+## ⚙️ LoRA Configuration
 
+```python
+peft_config = LoraConfig(
+    r=16,
+    lora_alpha=32,
+    target_modules=["q", "v"],
+    lora_dropout=0.05,
+    bias="none",
+    task_type=TaskType.SEQ_2_SEQ_LM
+)
+
+
+
+---
 ### 📉 Training & Validation Loss
 
 | Epoch | Training Loss | Validation Loss |
@@ -86,21 +103,6 @@ Model summaries were evaluated using ROUGE on 100 test samples:
 
 
 The ROUGE scores show that the model did a great job capturing the main ideas and structure of the original summaries. A ROUGE-1 score of 0.3630 means there was a strong match in the words used, while the ROUGE-2 score of 0.1508 shows the model also picked up on meaningful word pairs. The ROUGE-L and ROUGE-Lsum scores, both around 0.31, suggest the model kept the overall flow and structure of the summaries pretty well. Considering this was trained on just 1,000 examples using LoRA — a lightweight fine-tuning method — the results are impressive and show how effective parameter-efficient training can be.
-
----
-
-## ⚙️ LoRA Configuration
-
-```python
-peft_config = LoraConfig(
-    r=16,
-    lora_alpha=32,
-    target_modules=["q", "v"],
-    lora_dropout=0.05,
-    bias="none",
-    task_type=TaskType.SEQ_2_SEQ_LM
-)
-
 
 
 
