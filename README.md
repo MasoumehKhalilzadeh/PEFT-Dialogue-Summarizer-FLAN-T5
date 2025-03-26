@@ -40,6 +40,55 @@ With just **1,000 training samples** the model achieves **strong ROUGE scores**,
 
 ---
 
+### 📦 Training Details
+
+| Setting             | Value             |
+|---------------------|-------------------|
+| Model               | FLAN-T5-Base      |
+| Batch Size          | 8                 |
+| Epochs              | 3                 |
+| Samples Used        | 1,000             |
+| Eval Samples        | 300               |
+| GPU                 | A100 (Colab Pro)  |
+| PEFT Method         | LoRA              |
+| Train Time          | ~15 minutes       |
+
+---
+
+
+### 📉 Training & Validation Loss
+
+| Epoch | Training Loss | Validation Loss |
+|-------|----------------|-----------------|
+| 1     | 26.49          | 24.95           |
+| 2     | 13.24          | 9.63            |
+| 3     | 5.88           | 4.66            |
+
+
+
+✅ I cut My loss from ~26 to ~5 that’s a very healthy learning curve!
+🔽 My loss dropped steadily → My model learned effectively
+✅ Validation loss also dropped → it's not overfitting
+
+
+
+
+Model summaries were evaluated using ROUGE on 100 test samples:
+
+### 📊 ROUGE Evaluation
+
+| Metric       | Score   |
+|--------------|---------|
+| ROUGE-1      | 0.3630  |
+| ROUGE-2      | 0.1508  |
+| ROUGE-L      | 0.3102  |
+| ROUGE-Lsum   | 0.3097  |
+
+
+The ROUGE scores show that the model did a great job capturing the main ideas and structure of the original summaries. A ROUGE-1 score of 0.3630 means there was a strong match in the words used, while the ROUGE-2 score of 0.1508 shows the model also picked up on meaningful word pairs. The ROUGE-L and ROUGE-Lsum scores, both around 0.31, suggest the model kept the overall flow and structure of the summaries pretty well. Considering this was trained on just 1,000 examples using LoRA — a lightweight fine-tuning method — the results are impressive and show how effective parameter-efficient training can be.
+
+---
+
 ## ⚙️ LoRA Configuration
 
 ```python
